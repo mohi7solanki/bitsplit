@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bitsplit.models',
+    'bitsplit.corpus',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +122,4 @@ STATIC_URL = '/static/'
 ADMIN_SITE_HEADER = 'BitSplit Administration'
 ADMIN_INDEX_TITLE = 'Admin'
 ADMIN_SITE_TITLE = 'BitSplit'
+AUTH_USER_MODEL = 'corpus.User'
