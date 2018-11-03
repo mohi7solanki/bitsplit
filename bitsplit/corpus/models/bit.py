@@ -1,17 +1,20 @@
 from django.conf import settings
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
+from django.db.models import F
 
-from corpus.vote import Vote
+
 from .base import BaseModel
 from .limits import MAX_TITLE_LENGTH
 from .utils import get_sentinel_user
+from .vote import Vote
 
 
 class Bit(BaseModel):
     BIT_CHOICES = (
         ('url', 'URL'),
         ('txt', 'text'),
+        ('img', 'image')
     )
     title = models.CharField(max_length=MAX_TITLE_LENGTH)
     upvotes = models.PositiveIntegerField(default=0)
@@ -31,5 +34,20 @@ class Bit(BaseModel):
     def score(self):
         return self.upvotes - self.downvotes
 
+    def _vote(self, voter, value, field):
+        vote, created = self.votes(manager='_create').get_or_create(voter=voter)
+        deleted = vote.cast_vote(value)
+        if created or not deleted:
+            setattr(self, field, F(field) + 1)
+        else:
+            setattr(self, field, F(field) - 1)
+        self.save()
+
+    def upvote(self, voter):
+        self._vote(voter=voter, value=Vote.UPVOTE, field='upvotes')
+
+    def downvote(self, voter):
+        self._vote(voter=voter, value=Vote.DOWNVOTE, field='downvotes')
+
     def __str__(self):
-        return self.title[:7]
+        return self.title

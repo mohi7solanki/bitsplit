@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ModelsConfig(AppConfig):
+class CorpusConfig(AppConfig):
     name = 'corpus'
