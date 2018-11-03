@@ -57,6 +57,18 @@ parso = ">=0.3.0"
 
 [[package]]
 category = "dev"
+description = "Smart object creation facility for Django."
+name = "model-mommy"
+optional = false
+python-versions = "*"
+version = "1.6.0"
+
+[package.dependencies]
+django = ">=1.8.0"
+six = "*"
+
+[[package]]
+category = "dev"
 description = "A Python Parser"
 name = "parso"
 optional = false
@@ -130,7 +142,7 @@ python-versions = "*"
 version = "0.1.7"
 
 [metadata]
-content-hash = "df72ef5b0dc2f8bea509082fc43075f90f12d11b1eec89996c182ce2f756d66c"
+content-hash = "da79487d2ab0997714f9187b65976ea48eae13ed262b2249711192d0ac98cd19"
 python-versions = "^3.6"
 
 [metadata.hashes]
@@ -140,6 +152,7 @@ django-extensions = ["30cb6a8c7d6f75a55edf0c0c4491bd98f8264ae1616ce105f9cecac438
 djangorestframework = ["607865b0bb1598b153793892101d881466bd5a991de12bd6229abb18b1c86136", "63f76cbe1e7d12b94c357d7e54401103b2e52aef0f7c1650d6c820ad708776e5"]
 docopt = ["49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"]
 jedi = ["0191c447165f798e6a730285f2eee783fff81b0d3df261945ecb80983b5c3ca7", "b7493f73a2febe0dc33d51c99b474547f7f6c0b2c8fb2b21f453eef204c12148"]
+model-mommy = ["0e42c8f4a37c874dd81675ef8a385d3a25877082565e0d213022898c637f6f25", "8313c253617255060de474cdfcc0f7517e42deafc5619fec832a6c04b292b5d7"]
 parso = ["35704a43a3c113cce4de228ddb39aab374b8004f4f2407d070b6a2ca784ce8a2", "895c63e93b94ac1e1690f5fdd40b65f07c8171e3e53cbd7793b5b96c0e0a7f24"]
 prompt-toolkit = ["1df952620eccb399c53ebb359cc7d9a8d3a9538cb34c5a1344bdbeb29fbcc381", "3f473ae040ddaa52b52f97f6b4a493cfa9f5920c255a12dc56a7d34397a398a4", "858588f1983ca497f1cf4ffde01d978a3ea02b01c8a26a8bbc5cd2e66d816917"]
 ptpython = ["55d7cfad50a096f5922c4fdf8cea068a7ec9257418064b437c617ff2f120f81a", "816da300f620fb88ba97c7962062c8c178d6693b1db19c184660156b1af91bdc", "a78b27a85c5dbe9d89376e7f3aa70a9d8fa15cb45ee5f73a3cc3963b9b528ac1"]
