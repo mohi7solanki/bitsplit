@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'rest_framework',
     'bitsplit.corpus',
+    'bitsplit.api',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +126,15 @@ ADMIN_SITE_HEADER = 'BitSplit Administration'
 ADMIN_INDEX_TITLE = 'Admin'
 ADMIN_SITE_TITLE = 'BitSplit'
 AUTH_USER_MODEL = 'corpus.User'
+
+# REST Framework
+
+EST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    )
+}
