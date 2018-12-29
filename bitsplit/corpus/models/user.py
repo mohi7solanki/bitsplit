@@ -3,4 +3,4 @@ from django.db import models
 
 
 class User(AbstractUser):
-    bytes = models.IntegerField(default=1)
+    profile_image = models.ImageField()

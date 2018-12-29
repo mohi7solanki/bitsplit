@@ -5,6 +5,7 @@ from django.db.models import F
 
 
 from .base import BaseModel
+from .bitset import BitSet
 from .limits import MAX_TITLE_LENGTH
 from .utils import get_sentinel_user
 from .vote import Vote
@@ -21,20 +22,24 @@ class Bit(BaseModel):
     downvotes = models.PositiveIntegerField(default=0)
     url = models.URLField(null=True, blank=True)
     text = models.TextField(blank=True)
+    image = models.ImageField()
     bit_type = models.CharField(max_length=3, choices=BIT_CHOICES)
+    bitset = models.ForeignKey(
+        BitSet, on_delete=models.CASCADE, related_name='bits'
+    )
     votes = GenericRelation(Vote, related_query_name='bits')
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name='bits',
         on_delete=models.SET(get_sentinel_user),
     )
-    # TO DO: foreign key to community
 
     @property
     def score(self):
         return self.upvotes - self.downvotes
 
     def _vote(self, voter, value, field):
+        # pylint: disable=E1102
         vote, created = self.votes(manager='_create').get_or_create(voter=voter)
         deleted = vote.cast_vote(value)
         if created or not deleted:
