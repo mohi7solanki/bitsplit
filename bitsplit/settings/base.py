@@ -122,6 +122,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+
+
 ADMIN_SITE_HEADER = 'BitSplit Administration'
 ADMIN_INDEX_TITLE = 'Admin'
 ADMIN_SITE_TITLE = 'BitSplit'
@@ -129,7 +136,7 @@ AUTH_USER_MODEL = 'corpus.User'
 
 # REST Framework
 
-EST_FRAMEWORK = {
+REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',

@@ -33,6 +33,10 @@ class Bit(BaseModel):
         related_name='bits',
         on_delete=models.SET(get_sentinel_user),
     )
+    users_bookmarked = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name='bookmarked_bits',
+    )
 
     @property
     def score(self):
