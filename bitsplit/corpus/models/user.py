@@ -1,10 +1,12 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-
-def upload_user_profile(instance, filepath):
-    return f'profile_pictures/{instance.username}{filepath[filepath.rindex("."):]}'
+from .utils import UploadPath
 
 
 class User(AbstractUser):
-    profile_image = models.ImageField(upload_to=upload_user_profile)
+    profile_image = models.ImageField(
+        upload_to=UploadPath.get_upload_path(
+            dir_name='profile_images', field_name='username'
+        )
+    )

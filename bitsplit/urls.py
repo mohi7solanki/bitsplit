@@ -27,7 +27,7 @@ admin.site.site_title = settings.ADMIN_SITE_TITLE
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/v1/bitsplits/', include('bitsplit.api.urls')),
+    path('api/v1/', include('bitsplit.api.urls')),
 ]
 
 if settings.DEBUG:
@@ -35,4 +35,3 @@ if settings.DEBUG:
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
     )
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-

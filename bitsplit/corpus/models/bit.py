@@ -14,8 +14,8 @@ from .vote import Vote
 class Bit(BaseModel):
     BIT_CHOICES = (
         ('url', 'URL'),
-        ('txt', 'text'),
-        ('img', 'image')
+        ('txt', 'Text'),
+        ('img', 'Image')
     )
     title = models.CharField(max_length=MAX_TITLE_LENGTH)
     upvotes = models.PositiveIntegerField(default=0)
@@ -36,11 +36,20 @@ class Bit(BaseModel):
     users_bookmarked = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name='bookmarked_bits',
+        blank=True,
     )
 
     @property
     def score(self):
         return self.upvotes - self.downvotes
+
+    @property
+    def content(self):
+        if self.bit_type == 'img':
+            return self.image.url
+        elif self.bit_type == 'txt':
+            return self.text
+        return self.url
 
     def _vote(self, voter, value, field):
         # pylint: disable=E1102

@@ -6,8 +6,9 @@ from bitsplit.corpus import models
 class BitSetSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
-            'name',
+            'slug',
             'description',
             'moderators',
+            'logo',
         )
         model = models.BitSet
