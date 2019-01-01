@@ -144,3 +144,5 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     )
 }
+
+DEFAULT_ACCENT_COLOR = "#707070"
