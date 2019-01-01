@@ -3,7 +3,7 @@ from django.conf import settings
 
 from .base import BaseModel
 from .limits import MAX_BITSET_NAME
-from .utils import UploadPath
+from .utils import get_upload_path
 
 
 class BitSet(BaseModel):
@@ -11,7 +11,7 @@ class BitSet(BaseModel):
     slug = models.SlugField(max_length=MAX_BITSET_NAME, unique=True)
     description = models.TextField()
     logo = models.ImageField(
-        upload_to=UploadPath.get_upload_path(
+        upload_to=get_upload_path(
             dir_name='bitset_logos', field_name='slug'
         )
     )
