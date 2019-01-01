@@ -6,10 +6,18 @@ def get_sentinel_user():
     return user
 
 
-def get_upload_path(dir_name, field_name):
-    def wrap(instance, filepath):
+class UploadPath:
+    def __init__(self, dir_name, field_name):
+        self.dir_name = dir_name
+        self.field_name = field_name
+
+    @classmethod
+    def get_upload_path(cls, dir_name, field_name):
+        instance = cls(dir_name, field_name)
+        return instance._get_file_path
+
+    def _get_file_path(self, instance, filepath):
         ext = filepath[filepath.rindex('.'):]
-        name = getattr(instance, field_name)
+        name = getattr(instance, self.field_name)
         filename = f'{name}{ext}'
-        return f'{dir_name}/{filename}'
-    return wrap
+        return f'{self.dir_name}/{filename}'

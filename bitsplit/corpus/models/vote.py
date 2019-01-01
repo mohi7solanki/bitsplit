@@ -31,6 +31,7 @@ class Vote(BaseModel):
 
     class Meta:
         unique_together = ('content_type', 'object_id', 'voter')
+        index_together = (('content_type', 'object_id'),)
 
     def cast_vote(self, action):
         """
