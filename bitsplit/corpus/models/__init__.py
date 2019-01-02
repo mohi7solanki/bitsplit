@@ -1,5 +1,7 @@
 from .bit import Bit
+from .bitset import BitSet
 from .comment import Comment
-from .vote import Vote
+from .option import Option
+from .rule import Rule
 from .user import User
-from .bitset import BitSet, Rule, Option
+from .vote import Vote
