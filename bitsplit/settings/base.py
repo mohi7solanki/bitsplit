@@ -31,9 +31,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
-# Application definition
 
-INSTALLED_APPS = [
+INTERNAL_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,17 +40,27 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'django_extensions',
-    'rest_framework',
+)
+
+THIRD_PARTY_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'rest_framework',
     'rest_auth',
     'rest_auth.registration',
+    'django_extensions',
+)
+
+PROJECT_APPS = (
     'bitsplit.corpus',
     'bitsplit.api',
-]
+)
+
+INSTALLED_APPS = (
+    INTERNAL_APPS + THIRD_PARTY_APPS + PROJECT_APPS
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -163,3 +172,5 @@ JWT_AUTH = {
 }
 
 REST_USE_JWT = True
+
+SOCIALACCOUNT_ADAPTER = 'bitsplit.corpus.adapter.CustomUsernameAdapter'
