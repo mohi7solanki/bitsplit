@@ -13,6 +13,7 @@ class Rule(BaseModel):
         (POSTS_ONLY, 'Posts'),
         (COMMENTS_ONLY, 'Comments only'),
     )
+    slug = models.SlugField(max_length=8, unique=True)
     name = models.CharField(max_length=50)
     applies_to = models.IntegerField(choices=APPLIES_TO_CHOICE)
     violation_reason = models.CharField(max_length=50)

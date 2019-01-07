@@ -7,7 +7,7 @@ from .utils import UploadPath
 
 
 class BitSet(BaseModel):
-    slug = models.SlugField(max_length=MAX_BITSET_NAME, unique=True)
+    name = models.CharField(max_length=MAX_BITSET_NAME, unique=True)
     description = models.TextField()
     logo = models.ImageField(
         upload_to=UploadPath.get_upload_path(

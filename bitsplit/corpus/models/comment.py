@@ -7,7 +7,7 @@ from .bit import Bit
 
 
 class Comment(MPTTModel, Votable):
-
+    slug = models.SlugField(max_length=8, unique=True)
     # Denormalized fields to reduce query
     author_username = models.CharField(max_length=100)
     author_name = models.CharField(max_length=100)

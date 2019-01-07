@@ -16,6 +16,7 @@ class Vote(BaseModel):
     UPVOTE = 1
     DOWNVOTE = 2
 
+    slug = models.SlugField(max_length=8, unique=True)
     value = models.PositiveIntegerField(default=0)
     voter = models.ForeignKey(
         settings.AUTH_USER_MODEL,

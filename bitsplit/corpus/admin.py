@@ -7,4 +7,3 @@ admin.site.register(models.User)
 admin.site.register(models.BitSet)
 admin.site.register(models.Option)
 admin.site.register(models.Rule)
-

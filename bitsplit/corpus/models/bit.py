@@ -13,6 +13,7 @@ class Bit(Votable):
         ('txt', 'Text'),
         ('img', 'Image')
     )
+    slug = models.SlugField(max_length=8, unique=True)
     title = models.CharField(max_length=MAX_TITLE_LENGTH)
     url = models.URLField(null=True, blank=True)
     text = models.TextField(null=True, blank=True)

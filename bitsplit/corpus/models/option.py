@@ -19,6 +19,7 @@ class Option(BaseModel):
         blank=True,
         default=settings.DEFAULT_ACCENT_COLOR
     )
+    slug = models.SlugField(max_length=8, unique=True)
     bitset_type = models.CharField(max_length=20, choices=BITSET_TYPE_CHOICES)
     bit = models.OneToOneField(BitSet, on_delete=models.CASCADE)
 
